@@ -1,5 +1,18 @@
 fn main() {
 
+    let mut x = "sup".to_string();
+
+    let mut y = &mut x;
+
+
+
+
+
+
+
+
+
+
     let mut coconut = Coconut::new("brown".to_string(), "fuzzy".to_string(), 2.0);
 
     // c1 is storing a REFERENCE to coconut.color, it is a pointer that POINTS to the ACTUAL coconut.color
@@ -18,6 +31,33 @@ fn main() {
 
     println!("coconut 2 is cracked?: {}", coconut_2.is_cracked);
     println!("is coconut 2 expired?: {}", coconut_2.is_expired());
+
+
+    // Wendy Cod Fish Addition
+
+
+    let mut pill_bottle = PillBottle::new("brown".to_string(), 13, false);
+
+    let c = &pill_bottle.color;
+
+
+    println!("pill bottle color: {}", pill_bottle.color);
+    println!("pill bottle size: {}", pill_bottle.size);
+    println!("pill bottle is easy to open?: {}", pill_bottle.is_easy_open);
+    println!("pill bottle is_empty: {}", pill_bottle.is_empty);
+
+    pill_bottle.fill_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+    pill_bottle.lid_bottle();
+
+    pill_bottle.incease_size_by_one();
+
+    pill_bottle.lid_bottle();
 }
 
 
@@ -53,6 +93,42 @@ impl Coconut {
     }
 }
 
+
+
+
+
+//            Structs, Wendy Cod Fish Addition
+
+
+struct PillBottle {
+    color: String,
+    size: i32,
+    is_easy_open: bool,
+    is_empty: bool
+}
+
+impl PillBottle {
+    fn new(color: String, size: i32, is_easy_open: bool) -> Self {
+        PillBottle {
+            color,
+            size,
+            is_easy_open: is_easy_open,
+            is_empty: true
+        }
+    }
+    
+    fn fill_bottle(&mut self) {
+        self.is_empty = false;
+    }
+
+    fn lid_bottle(&mut self) {
+        self.is_easy_open = true;
+    }
+
+    fn incease_size_by_one(&mut self) {
+        self.size += 1;
+    }
+}
 
 // Create a room application. this room application will take input from the user
 // and we are going to take in the width, height, and length of a room from a user.
