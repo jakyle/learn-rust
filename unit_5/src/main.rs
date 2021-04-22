@@ -17,7 +17,7 @@ fn main() {
 
     // the drop_dog method takes drop_dog(self) as a parameter, NOT a reference or a mut Reference, but ITself,
     // which is to say, drop_dog takes OWNERSHIP over self.
-    println!("{}", otis.drop_dog());  
+    println!("{}", otis.drop_dog());
 
 
     // we CANNOT call this method anymore, because, otis no longer exist into memory, this is because
