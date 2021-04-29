@@ -94,23 +94,35 @@ fn main() {
     );
 
     println!("My initials: {}", initials);
+
+    let cases = [
+        ("training", Some("aii".to_string())),
+        ("beautiful", Some("eauiu".to_string())),
+        ("today", Some("oa".to_string())),
+        ("tsk", None),
+    ];
+
+    for (word, expected) in cases.iter() {
+        let result = get_all_vowels(word);
+        println!("expected: {:?}, result: {:?}", expected, result);
+    }
+
+    let vowels = get_all_vowels("training");
+
+    println!("vowels: {:#?}", vowels);
 }
 
 //   "hello".to_string()     ...   "hello"[0..3]  =   &"hel"
 // &str IS NOT THE SAME AS A String
 // example: "James Brian Jackson"
 fn get_name_initials(name: &str) -> String {
-    let full_name = name
-        .to_string()
-        .to_uppercase();
+    let full_name = name.to_string().to_uppercase();
 
-    let names = full_name
-        .split_whitespace()
-        .collect::<Vec<&str>>();
+    let names_iter = full_name.split_whitespace();
 
     let mut initials = String::new();
 
-    for name in names {
+    for name in names_iter {
         let mut s = String::from(name);
         s.truncate(1);
         s.push('.');
@@ -118,4 +130,37 @@ fn get_name_initials(name: &str) -> String {
     }
 
     initials
+}
+
+// "training" -> Some("aii")
+// "beautiful" -> Some("eauiu")
+// "today" -> Some("oa")
+// "tsk" -> None
+fn get_all_vowels(word: &str) -> Option<String> {
+    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let mut result = String::new();
+
+    for c in word.chars() {
+        for vowel in vowels.iter() {
+            if &c == vowel {
+                result.push(c);
+            }
+        }
+    }
+
+    if result.is_empty() {
+        None
+    } else {
+        Some(result)
+    }
+}
+
+fn get_all_vowels_jimmy_solution(word: &str) -> Option<String> {
+    let vowels = word.replace(|c| !matches!(c, 'a' | 'e' | 'i' | 'o' | 'u'), "");
+
+    if vowels.is_empty() {
+        None
+    } else {
+        Some(vowels)
+    }
 }
