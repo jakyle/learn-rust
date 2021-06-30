@@ -1,4 +1,4 @@
-use chrono::{DateTime, Datelike, NaiveDate, NaiveTime, TimeZone, Timelike, Utc};
+use chrono::{DateTime, Datelike, NaiveDate, NaiveTime, TimeZone, Timelike, Utc, Duration};
 
 fn main() {
     // 2021-06-30T:0256:10Z
@@ -56,7 +56,10 @@ fn main() {
         }
     };
 
+
     let user_date_time = Utc.from_local_date(&user_date).unwrap();
+
+    let future_user_date = user_date_time + Duration::days(32) + Duration::seconds(32);
 
     println!("{}", user_date);
     println!("{}", user_time);
